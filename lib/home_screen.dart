@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'custom_clippers/arc_clipper.dart';
+import 'custom_clippers/arrow_clipper.dart';
+import 'custom_clippers/zegzag_clipper.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,9 +18,11 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           color: Colors.blue.shade100,
           child: ClipPath(
-            clipper: ArcClipper(hPadding: 0),
+            clipper: ArrowClipper(
+
+            ),
             child: Container(
-              height: 300,
+              height: 100,
               width: 300,
               color: Colors.green,
             ),

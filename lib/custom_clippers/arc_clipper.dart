@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class ArcClipper extends CustomClipper<Path> {
   double get heightRatio => startRatio + .5;
-  double startRatio = .0;
+  final double startRatio = .0;
   final double hPadding;
   ArcClipper({this.hPadding=20});
   @override
