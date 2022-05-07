@@ -1,6 +1,4 @@
-import 'package:custom_clipper/custom_clippers/arc_clipper.dart';
 import 'package:flutter/material.dart';
-import 'custom_clippers/arrow_clipper.dart';
 import 'custom_clippers/frequency_clipper.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,12 +16,13 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           color: Colors.blue.shade100,
           child: ClipPath(
-            clipper: FrequencyClipper(),
+            clipper: FrequencyClipper(count: 3, startPoint: .5),
             child: Container(
-              height: 100,
-              width: 200,
+              height: 300,
+              width: double.maxFinite,
+              alignment: Alignment.center,
               color: Colors.amber.shade800,
-              child: Text("test"),
+              child: const Text("test"),
             ),
           ),
         ),

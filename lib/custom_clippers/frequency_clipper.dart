@@ -1,33 +1,41 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 /// frequency means full cycle (1 up and 1 down)
 class FrequencyClipper extends CustomClipper<Path> {
   final int count;
-  final double heightRatio;
-  FrequencyClipper({this.count = 4, this.heightRatio = .5});
+  final double startPoint;
+  double maxHeight;
+  FrequencyClipper({this.count = 4, this.startPoint = .5, this.maxHeight = 1})
+      : assert(maxHeight <= 1),
+        assert(startPoint <= 1),
+        assert(count >= 0);
   @override
   Path getClip(Size size) {
     Path path = Path();
-    final double mainDx = size.height * heightRatio;
-    path.moveTo(0, mainDx);
+    final double mainDy = size.height * startPoint;
+    final double highestSize = size.height * maxHeight;
+    final double highestPoint = mainDy - highestSize;
+    final double lowestPoint = mainDy + highestSize;
+    path.moveTo(0, mainDy);
     for (int i = 1; i <= count; i++) {
       double startDx = (size.width / count) * (i - 1);
       double endDx = (size.width / count) * i;
 
       path.quadraticBezierTo(
         startDx + ((endDx - startDx) * .25),
-        0,
+        highestPoint,
         startDx + ((endDx - startDx) * .5),
-        mainDx,
+        mainDy,
       );
       path.quadraticBezierTo(
         startDx + ((endDx - startDx) * .75),
-        size.height,
+        lowestPoint,
         endDx,
-        mainDx,
+        mainDy,
       );
     }
-
     path.close();
     return path;
   }
