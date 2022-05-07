@@ -15,7 +15,6 @@ class ArcClipper extends CustomClipper<Path> {
     Path path = Path();
     path.moveTo(hPadding, size.height * startRatio);
     path.lineTo(hPadding, size.height * heightRatio);
-    print(size.height*heightRatio);
     path.arcToPoint(
       Offset(size.width-hPadding, size.height*heightRatio),
       // radius:const Radius.circular(100),
